@@ -1,5 +1,11 @@
 # fragile-promise
 
+## 0.1.3
+
+### Patch Changes
+
+- aaa91a8: build: minify output with terser
+
 ## 0.1.2
 
 ### Patch Changes
