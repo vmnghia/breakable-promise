@@ -18,7 +18,8 @@
 			"types": "./dist/index.d.ts"
 		}
 	},
-	"name": "breakable-promise",
+	"name": "fragile-promise",
+	"description": "A modern Promise implementation with timeout and cancellation.",
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch"
