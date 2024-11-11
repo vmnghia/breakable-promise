@@ -18,6 +18,9 @@
 			"types": "./dist/index.d.ts"
 		}
 	},
+	"files": [
+		"dist/**"
+	],
 	"name": "fragile-promise",
 	"description": "A modern Promise implementation with timeout and cancellation.",
 	"scripts": {
