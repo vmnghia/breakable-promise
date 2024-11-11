@@ -12,13 +12,13 @@ export class CancellationError extends Error {
   }
 }
 
-interface BreakablePromiseWithResolvers<T> {
-  promise: BreakablePromise<T>;
+interface FragilePromiseWithResolvers<T> {
+  promise: FragilePromise<T>;
   resolve: (value: T | PromiseLike<T>) => void;
   reject: (reason?: unknown) => void;
 }
 
-export class BreakablePromise<T = unknown> extends Promise<T> {
+export class FragilePromise<T = unknown> extends Promise<T> {
   abortController: AbortController;
   abortSignal: AbortSignal;
   #timeout?: NodeJS.Timeout;
@@ -58,12 +58,12 @@ export class BreakablePromise<T = unknown> extends Promise<T> {
       | ((reason: unknown) => TResult2 | PromiseLike<TResult2>)
       | undefined
       | null
-  ): BreakablePromise<TResult1 | TResult2> {
+  ): FragilePromise<TResult1 | TResult2> {
     return Promise.prototype.then.call(
       this,
       onfulfilled,
       onrejected
-    ) as BreakablePromise<TResult1 | TResult2>;
+    ) as FragilePromise<TResult1 | TResult2>;
   }
 
   catch<TResult = never>(
@@ -71,17 +71,17 @@ export class BreakablePromise<T = unknown> extends Promise<T> {
       | ((reason: unknown) => TResult | PromiseLike<TResult>)
       | null
       | undefined
-  ): BreakablePromise<T | TResult> {
-    return Promise.prototype.catch.call(this, onrejected) as BreakablePromise<
+  ): FragilePromise<T | TResult> {
+    return Promise.prototype.catch.call(this, onrejected) as FragilePromise<
       T | TResult
     >;
   }
 
-  finally(onfinally?: (() => void) | null | undefined): BreakablePromise<T> {
+  finally(onfinally?: (() => void) | null | undefined): FragilePromise<T> {
     return Promise.prototype.finally.call(
       this,
       onfinally
-    ) as BreakablePromise<T>;
+    ) as FragilePromise<T>;
   }
 
   cancel() {
@@ -121,11 +121,11 @@ export class BreakablePromise<T = unknown> extends Promise<T> {
     return (error as Error).name === 'TimeoutError';
   }
 
-  static withResolvers<T>(): BreakablePromiseWithResolvers<T> {
-    let resolve: BreakablePromiseWithResolvers<T>['resolve'] = () => {};
-    let reject: BreakablePromiseWithResolvers<T>['reject'] = () => {};
+  static withResolvers<T>(): FragilePromiseWithResolvers<T> {
+    let resolve: FragilePromiseWithResolvers<T>['resolve'] = () => {};
+    let reject: FragilePromiseWithResolvers<T>['reject'] = () => {};
 
-    const promise = new BreakablePromise<T>((res, rej) => {
+    const promise = new FragilePromise<T>((res, rej) => {
       resolve = res;
       reject = rej;
     });
