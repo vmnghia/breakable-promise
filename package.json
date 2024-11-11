@@ -12,21 +12,42 @@
 		"typescript": "^5.6.3",
 		"typescript-eslint": "^8.12.2"
 	},
+	"main": "dist/index.js",
 	"exports": {
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js",
+			"default": "./dist/index.js"
 		}
 	},
 	"files": [
-		"dist/**"
+		"dist/**",
+		"CHANGELOG.md"
 	],
 	"name": "fragile-promise",
-	"description": "A modern Promise implementation with timeout and cancellation.",
+	"description": "A modern Promise implementation with timeout and cancellation using AbortController.",
 	"scripts": {
-		"build": "tsc",
-		"dev": "tsc --watch"
+		"build": "rollup -c",
+		"dev": "rollup -w"
 	},
 	"type": "module",
-	"version": "0.1.1"
+	"version": "0.1.1",
+	"license": "MIT",
+	"keywords": [
+		"promise",
+		"timeout",
+		"async",
+		"await",
+		"time",
+		"out",
+		"cancel",
+		"cancellation",
+		"cancellable",
+		"breakable",
+		"fragile",
+		"abort",
+		"controller",
+		"signal"
+	]
 }
