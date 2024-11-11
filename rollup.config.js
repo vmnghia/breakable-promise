@@ -1,4 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
+import terser from '@rollup/plugin-terser';
 
 /** @type {import('rollup').RollupOptions} */
 export default [
@@ -7,16 +8,18 @@ export default [
     output: {
       dir: 'dist',
       format: 'umd',
-      name: 'FragilePromise'
+      name: 'FragilePromise',
+      compact: true
     },
-    plugins: [typescript()],
+    plugins: [typescript(), terser()],
   },
   {
     input: './src/index.ts',
     output: {
       file: 'dist/index.mjs',
       format: 'es',
+      compact: true
     },
-    plugins: [typescript()],
+    plugins: [typescript(), terser()],
   },
 ];
