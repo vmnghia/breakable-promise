@@ -1,5 +1,11 @@
 # fragile-promise
 
+## 0.1.2
+
+### Patch Changes
+
+- 9cea0aa: update build config
+
 ## 0.1.1
 
 ### Patch Changes
