@@ -12,7 +12,7 @@ export class CancellationError extends Error {
   }
 }
 
-interface FragilePromiseWithResolvers<T> {
+export interface FragilePromiseWithResolvers<T> {
   promise: FragilePromise<T>;
   resolve: (value: T | PromiseLike<T>) => void;
   reject: (reason?: unknown) => void;
