@@ -1,5 +1,11 @@
 # fragile-promise
 
+## 0.1.4
+
+### Patch Changes
+
+- 4a55930: export FragilePromiseWithResolvers interface
+
 ## 0.1.3
 
 ### Patch Changes
